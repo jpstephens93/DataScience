@@ -75,7 +75,7 @@ docs/_build/
 target/
 
 # Jupyter Notebook
-.ipynb_checkpoints
+Population/.ipynb_checkpoints
 
 # IPython
 profile_default/
@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # Files
-mappings/*
-data/*
+Population/mappings/*
+Population/data/*
