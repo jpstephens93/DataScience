@@ -1,0 +1,31 @@
+from utils.functions import coordinates_range
+import pandas as pd
+import requests
+
+latitude = coordinates_range(50, 50.5, 0.25)
+longitude = coordinates_range(-8, 2, 0.25)
+
+base_api_url = 'https://www.starbucks.co.uk/api/v1/store-finder?&place=United+Kingdom'
+
+stores = []
+for i in latitude:
+    # i = latitude[0]
+    for j in longitude:
+        # j = longitude[0]
+        url = base_api_url + f'&latLng={str(i)}%2C{str(j)}'
+        page = requests.get(url)
+
+        for store in page.json()['stores']:
+            drive_thru = 0
+            for amenity in store['amenities']:
+                if amenity['description'] == 'Drive-Through':
+                    drive_thru = 1
+            stores.append([store['name'], store['address'], drive_thru, store['coordinates']])
+
+        if not str(page) == '<Response [200]>':
+            print(f'ERROR: Coordinates ({i}, {j}) not found')
+        else:
+            print(f'Coordinates ({i}, {j}) success')
+
+df = pd.DataFrame(stores, columns=['StoreName', 'Address', 'DriveThru', 'Coordinates'])
+df.drop_duplicates('Address', inplace=True)
