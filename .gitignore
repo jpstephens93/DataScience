@@ -130,3 +130,6 @@ dmypy.json
 
 # Files
 Starbucks/data
+
+# Security
+.kaggle
