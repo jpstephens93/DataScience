@@ -75,7 +75,7 @@ docs/_build/
 target/
 
 # Jupyter Notebook
-Population/.ipynb_checkpoints
+population/.ipynb_checkpoints
 
 # IPython
 profile_default/
@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Files
-Starbucks/data
+starbucks/data
 
 # Security
 .kaggle

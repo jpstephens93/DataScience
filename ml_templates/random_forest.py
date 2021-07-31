@@ -1,8 +1,15 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import mean_absolute_error
+
+
+def score_model(model, X_train, X_valid, y_train, y_valid):
+    model.fit(X_train, y_train)
+    preds = model.predict(X_valid)
+    return mean_absolute_error(y_valid, preds)
+
 
 # 1) Load Data
 X_full = pd.read_csv('../input/train.csv', index_col='Id')
